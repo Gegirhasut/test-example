@@ -1,7 +1,11 @@
-import requests
+import os
+import pytest
 
-BASE_URL = "https://api.example.com"
+@pytest.fixture
+def user_token():
+    return os.getenv("USER_TOKEN", "test_user_token")
 
+BASE_URL = os.getenv("BASE_URL", "https://api.example.com")
 
 def test_user_cannot_change_status(user_token):
     """
